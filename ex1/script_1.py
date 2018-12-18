@@ -3,18 +3,20 @@ import clear_screen
 import pandas
 import matplotlib.pyplot as plt
 import numpy as np
+import cost
 
 # command = "Users/ananthrajsingh/Desktop/Andrew_Ng_Python/ex1/clear_screen.py"
 # call(command, shell = True)
 clear_screen.clear()
-print("Pausing the script")
-input("Press <ENTER> to continue")
-print("Continuing...")
+# print("Pausing the script")
+# input("Press <ENTER> to continue")
+# print("Continuing...")
 filepath1 = "/Users/ananthrajsingh/Desktop/Andrew_Ng_Python/ex1/ex1data1.csv"
 names1 = ["profit", "population"]
 filepath2 = "Users/ananthrajsingh/Desktop/Andrew_Ng_Python/ex1/ex1data2.csv"
 dataset1 = pandas.read_csv(open(filepath1), names = names1, decimal = ",")
 print("Printing dataset")
+input("Press <ENTER> to print dataset")
 print(dataset1)
 input("Press <ENTER> to continue")
 clear_screen.clear()
@@ -24,15 +26,40 @@ X = array1[:,0]
 X = X.astype(np.float)
 y = array1[:,1]
 y = y.astype(np.float)
-# print("Printing X")
-# print(X)
-# input("Press <ENTER> to continue")
+
+# plt.scatter(X,y)
+# # plt.axis([0, 5, 0, 5])
+# # fig.suptitle("Profit vs population")
+# plt.show()
+
+
+#####################################################################
+# Cost and Gradient Descent
+#####################################################################
 # clear_screen.clear()
-# print("Printing y")
-# print(y)
-# y = array1[:,1]
-# fig = plt.figure()
-plt.scatter(X,y)
-# plt.axis([0, 5, 0, 5])
-# fig.suptitle("Profit vs population")
-plt.show()
+# input("Press <ENTER> to calculate Cost and Gradient Descent")
+# getting dimensions of X
+X = np.matrix(X)
+X = X.transpose()
+y = np.matrix(y)
+y = y.transpose()
+# print("Shape of y")
+# print(y.shape)
+n,m = X.shape
+# print("Shape of X")
+# print(X.shape)
+# Make an column of 1s of size m
+zeros = np.ones((n,1))
+# Adding a column of 1's to X to add bias unit
+X = np.hstack((zeros, X))
+
+# there will be 2 theta parameters
+theta = np.zeros((2, 1), dtype = "float")
+iterations = 1500
+alpha = 0.01
+
+
+print("Testing cost function")
+J = cost.computeCost(X, y, theta)
+print('With theta = [0 ; 0]\nCost computed = %f\n', J)
+print('Expected cost value (approx) 32.07\n')
