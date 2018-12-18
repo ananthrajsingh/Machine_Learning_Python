@@ -15,9 +15,9 @@ filepath1 = "/Users/ananthrajsingh/Desktop/Andrew_Ng_Python/ex1/ex1data1.csv"
 names1 = ["profit", "population"]
 filepath2 = "Users/ananthrajsingh/Desktop/Andrew_Ng_Python/ex1/ex1data2.csv"
 dataset1 = pandas.read_csv(open(filepath1), names = names1, decimal = ",")
-print("Printing dataset")
-input("Press <ENTER> to print dataset")
-print(dataset1)
+# print("Printing dataset")
+# input("Press <ENTER> to print dataset")
+# print(dataset1)
 input("Press <ENTER> to continue")
 clear_screen.clear()
 print("Plotting data...")
@@ -27,17 +27,17 @@ X = X.astype(np.float)
 y = array1[:,1]
 y = y.astype(np.float)
 
-# plt.scatter(X,y)
-# # plt.axis([0, 5, 0, 5])
-# # fig.suptitle("Profit vs population")
-# plt.show()
+plt.scatter(X,y)
+# plt.axis([0, 5, 0, 5])
+# fig.suptitle("Profit vs population")
+plt.show()
 
 
 #####################################################################
 # Cost and Gradient Descent
 #####################################################################
-# clear_screen.clear()
-# input("Press <ENTER> to calculate Cost and Gradient Descent")
+clear_screen.clear()
+input("Press <ENTER> to calculate Cost and Gradient Descent")
 # getting dimensions of X
 X = np.matrix(X)
 X = X.transpose()
@@ -61,5 +61,28 @@ alpha = 0.01
 
 print("Testing cost function")
 J = cost.computeCost(X, y, theta)
-print('With theta = [0 ; 0]\nCost computed = %f\n', J)
+print('With theta = [0 ; 0]\nCost computed = ', J[0][0])
 print('Expected cost value (approx) 32.07\n')
+
+J = cost.computeCost(X, y, [[-1], [2]])
+print('\nWith theta = [-1 ; 2]\nCost computed = ', J[0][0])
+print('Expected cost value (approx) 54.24\n');
+
+clear_screen.clear()
+input("Program paused. Press <ENTER> to continue")
+
+print("Running Gradient Descent...")
+num_iters = 1500
+J_history, theta = cost.gradientDescent(X, y, theta, alpha, num_iters)
+print("Theta found by gradientDescent")
+print(theta)
+print("Expected theta values (approx)")
+print(" -3.6303 \n 1.1664")
+
+
+
+
+
+
+
+
