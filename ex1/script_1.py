@@ -68,7 +68,6 @@ J = cost.computeCost(X, y, [[-1], [2]])
 print('\nWith theta = [-1 ; 2]\nCost computed = ', J[0][0])
 print('Expected cost value (approx) 54.24\n');
 
-clear_screen.clear()
 input("Program paused. Press <ENTER> to continue")
 
 print("Running Gradient Descent...")
@@ -78,11 +77,20 @@ print("Theta found by gradientDescent")
 print(theta)
 print("Expected theta values (approx)")
 print(" -3.6303 \n 1.1664")
+input("Press <ENTER> to continue")
+
+#####################################################################
+# Visualizing Data
+#####################################################################
+theta0_values = np.arange(-10, 10, 0.2)
+theta1_values = np.arange(-1, 4, 0.05)
+J_vals = np.zeros((len(theta0_values), len(theta1_values)), dtype = "float")
 
 
-
-
-
-
+for i in range(len(theta0_values)):
+	for j in range(len(theta1_values)):
+		t = [[theta0_values[i]],[theta1_values[j]]
+		J_vals[i][j] = cost.computeCost(X, y, t);
+print(J_vals)
 
 

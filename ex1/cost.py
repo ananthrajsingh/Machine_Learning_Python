@@ -29,7 +29,7 @@ def computeCost(X, y, theta):
 	# print(A)
 	
 	sum1 = A.sum(axis = 0)[0] #Columwise sum will return array, taking its first term
-	print("sum - ")
+	# print("sum - ")
 	# print(sum1)
 	return sum1[0]/(2*m)
 
