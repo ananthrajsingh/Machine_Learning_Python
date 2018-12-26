@@ -68,14 +68,22 @@ print(theta)
 print("Expected theta values (approx)")
 print(" -3.6303 \n 1.1664")
 # X is m x 2 and theta is 2 x 1
-# theta_t = np.transpose(theta)
+# Plotting the fit
 ax1.scatter([X[:,1]], [X * theta],color = "k", marker = ".", label = "Fit")
 plt.draw()
 fig.show()
 plt.legend(loc='best')
 # plt.show()
 input("Press <ENTER> to continue")
+predict1 = [1, 3.5] * theta
+predict1 = predict1 * 10000
+print("Predicted profit for population 35000 - ")
+print(predict1)
 
+predict1 = [1, 10] * theta
+predict1 = predict1 * 10000
+print("Predicted profit for population 100000 - ")
+print(predict1)
 #####################################################################
 # Visualizing Data
 #####################################################################
