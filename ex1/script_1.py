@@ -4,6 +4,7 @@ import pandas
 import matplotlib.pyplot as plt
 import numpy as np
 import cost
+from mpl_toolkits.mplot3d import Axes3D
 
 
 clear_screen.clear()
@@ -87,15 +88,36 @@ print(predict1)
 #####################################################################
 # Visualizing Data
 #####################################################################
-# theta0_values = np.arange(-10, 10, 0.2)
-# theta1_values = np.arange(-1, 4, 0.05)
-# J_vals = np.zeros((len(theta0_values), len(theta1_values)), dtype = "float")
+theta0_values = np.arange(-10, 10, 0.2)
+theta1_values = np.arange(-1, 4, 0.05)
+J_vals = np.zeros((len(theta0_values), len(theta1_values)), dtype = "float")
 
+for i in range(len(theta0_values)):
+	for j in range(len(theta1_values)):
+		t = [[theta0_values[i]],[theta1_values[j]]]
+		J_vals[i,j] = cost.computeCost(X, y, t)
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.plot_surface(theta0_values, theta1_values, J_vals)
+ax.set_xlabel('Theta 0')
+ax.set_ylabel('Theta 1')
+ax.set_zlabel('Cost (J)')
+print("Close figure window to continue...")
+plt.show()
 
-# for i in range(len(theta0_values)):
-# 	for j in range(len(theta1_values)):
-# 		t = [[theta0_values[i]],[theta1_values[j]]
-# 		J_vals[i][j] = cost.computeCost(X, y, t);
-# print(J_vals)
-
-
+# input("Program paused. Press <ENTER> to continue")
+# Plot contour plot of cost function with respect to
+# theta 0 and theta 1
+fig = plt.figure()
+ax2 = fig.add_subplot(111)
+ax2.contourf(theta0_values, theta1_values, J_vals, 20)
+plt.draw()
+fig.show()
+# Now plot the theta we got after gradient descent
+ax2.plot(theta[0],theta[1], "ro")
+print(theta[0])
+print(theta[1])
+plt.draw()
+fig.show()
+print("Close figure window to end script.")
+plt.show()
