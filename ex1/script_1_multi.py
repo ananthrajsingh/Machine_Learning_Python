@@ -61,7 +61,7 @@ X, mu, sigma = cost.featureNormalize(X)
 # print("First 10 examples of Normalised X:")
 # print(X[0:9, :])
 
-input("Program paused. Press <enter> to continue.")
+# input("Program paused. Press <enter> to continue.")
 
 #####################################################################
 # GRADIENT DESCENT
@@ -91,8 +91,17 @@ ax = fig.add_subplot(111)
 ax.plot(J_history)
 ax.set_xlabel('Iterations')
 ax.set_ylabel('Cost')
-
+print("Close plot figure to continue")
 plt.show()
+
+print("Predicted price of a 1650 sq-ft, 3 bedrooms house: ")
+# print("mu :", mu)
+# print("sigma :", sigma)
+normalized_area = (1650 - mu[0,0])/sigma[0,0]
+normalised_br = (3 - mu[0,1])/sigma[0,1]
+price = theta[0] + normalized_area*theta[1] + normalised_br*theta[2]
+print(price)
+
 
 
 
