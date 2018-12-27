@@ -50,5 +50,17 @@ def gradientDescent(X, y, theta, alpha, num_iters):
 		J_history[i] = computeCost(X, y, theta)
 	return (J_history, theta)
 
-
+# This returns normalised values for each feature with mean 0 and
+# standard deviation of 1. This is a good preprocessing practise.
+# Here we will calculate mean for each feature, and subtract from 
+# each example of that feature, then storing value of mean in mu.
+# Next we eill calculate standard deviation for each feature. We 
+# will divide that feature values with this deviation, storing it 
+# in sigma.
+def featureNormalize(X):
+	mu = X.mean(axis = 0)
+	X_norm = X - mu
+	sigma = X_norm.std(axis = 0, ddof = 1) # 0 means along columns
+	X_norm = X_norm/sigma
+	return (X_norm, mu, sigma)
 
