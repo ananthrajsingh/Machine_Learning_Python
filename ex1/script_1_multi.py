@@ -56,7 +56,43 @@ input("Program paused. Press <enter> to continue.")
 print("Normalizing features...")
 
 X, mu, sigma = cost.featureNormalize(X)
-print("mean mu: ", mu)
-print("standard deviation sigma: ", sigma)
-print("First 10 examples of Normalised X:")
-print(X[0:9, :])
+# print("mean mu: ", mu)
+# print("standard deviation sigma: ", sigma)
+# print("First 10 examples of Normalised X:")
+# print(X[0:9, :])
+
+input("Program paused. Press <enter> to continue.")
+
+#####################################################################
+# GRADIENT DESCENT
+#####################################################################
+
+# Add intercept term to our X
+# m is the number of examples we have
+# creating vector of ones
+intercept_ones = np.ones((m,1))
+# Stick this vector to our X
+X = np.hstack((intercept_ones, X))
+# shape of X is now m x n+1
+print("Running Gradient Descent...")
+# Let us choose an alpha and number of iterations
+alpha = 0.01
+iters = 400
+# Also initialise theta to pass as argument
+theta = np.zeros((n + 1,1), dtype = "float")
+# We will be using same gradient descent function
+# since we implemented it in vectorised form,
+# it will work for multiple features too.
+J_history, theta = cost.gradientDescent(X, y, theta, alpha, iters)
+print("Theta calculated from gradientDescent: ", theta)
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.plot(J_history)
+ax.set_xlabel('Iterations')
+ax.set_ylabel('Cost')
+
+plt.show()
+
+
+
