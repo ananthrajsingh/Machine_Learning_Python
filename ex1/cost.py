@@ -60,6 +60,10 @@ def gradientDescent(X, y, theta, alpha, num_iters):
 def featureNormalize(X):
 	mu = X.mean(axis = 0)
 	X_norm = X - mu
+	# axis = 0 means we need to calculate along columns
+	# ddof = 1 means we will divide with N - 1 rather than N
+	# actually (N - ddof), we are doing this to match the result with
+	# Matlab result. Python takes ddof = 0 as default.
 	sigma = X_norm.std(axis = 0, ddof = 1) # 0 means along columns
 	X_norm = X_norm/sigma
 	return (X_norm, mu, sigma)
