@@ -68,9 +68,18 @@ cost, gradient = regression.costFunction(initial_theta, X, y)
 
 print('Cost at initial theta (zeros): \n', cost);
 print('Expected cost (approx): 0.693\n');
-print('Gradient at initial theta (zeros): \n');
-print(' \n', gradient);
+print('Gradient at initial theta (zeros):');
+print(gradient);
 print('Expected gradients (approx):\n -0.1000\n -12.0092\n -11.2628\n');
 
+test_theta = [[-24], [0.2], [0.2]];
+test_theta = np.matrix(test_theta)
+cost, grad = regression.costFunction(test_theta, X, y);
+
+print('\nCost at test theta: \n', cost);
+print('Expected cost (approx): 0.218\n');
+print('Gradient at test theta:');
+print('\n', grad);
+print('Expected gradients (approx):\n 0.043\n 2.566\n 2.647\n');
 
 
