@@ -14,7 +14,7 @@ def costFunction(theta, X, y):
 	# Initialize cost and gradient
 	J = 0
 	grad = np.zeros((a,b))
-	A = np.log(np.transpose(sigmoid(X * theta))) * (-y) + np.log(1 - np.transpose(sigmoid(X * theta))) * (1-y)
+	A = np.log(np.transpose(sigmoid(X * theta))) * (-y) - np.log(1 - np.transpose(sigmoid(X * theta))) * (1-y)
 	J = A/m
 	grad = (np.transpose(X) * (sigmoid(X * theta) - y))/m
 	return (J, grad)
