@@ -69,10 +69,13 @@ initial_theta = np.zeros((n+1,1))
 # cost, gradient = regression.costFunction(initial_theta, X, y)
 cost = regression.onlyCost(initial_theta, X, y)
 gradient = regression.onlyGradient(initial_theta, X, y)
-print('Cost at initial theta (zeros): \n', cost);
+print('Cost at initial theta (zeros): \n', cost[0,0]);
 print('Expected cost (approx): 0.693\n');
 print('Gradient at initial theta (zeros):');
-print(gradient);
+print(gradient[0])
+print(gradient[1])
+print(gradient[2])
+
 print('Expected gradients (approx):\n -0.1000\n -12.0092\n -11.2628\n');
 
 test_theta = [[-24], [0.2], [0.2]]
@@ -80,14 +83,17 @@ test_theta = np.matrix(test_theta)
 cost = regression.onlyCost(test_theta, X, y);
 grad = regression.onlyGradient(test_theta, X, y);
 
-print('\nCost at test theta: \n', cost);
+print('\nCost at test theta: \n', cost[0,0]);
 print('Expected cost (approx): 0.218\n');
 print('Gradient at test theta:');
-print(grad);
+print(grad[0])
+print(grad[1])
+print(grad[2])
 print('Expected gradients (approx):\n 0.043\n 2.566\n 2.647\n');
 
-screen.clear()
 input("Program paused. Press <enter> to continue.")
+screen.clear()
+
 
 
 #####################################################################
@@ -95,9 +101,7 @@ input("Program paused. Press <enter> to continue.")
 #####################################################################
 
 my_args = (X,y)
-print(X.shape)
-print(y.shape)
-print(test_theta.shape)
+
 
 
 
@@ -108,4 +112,8 @@ def fprime(theta):
 
 
 theta = scipy.optimize.fmin_bfgs(f,test_theta, fprime)
+print("theta from scipy.optimize.fmin_bfgs")
 print(theta)
+print('Expected theta (approx):');
+print(' -25.161   0.206   0.201\n');
+
