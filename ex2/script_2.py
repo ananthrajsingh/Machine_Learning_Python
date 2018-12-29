@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from numpy import where
 import regression
+import scipy.optimize
 screen.clear()
 # As always, first step is loading up the data
 filepath = "/Users/ananthrajsingh/Desktop/Andrew_Ng_Python/ex2/ex2data1.csv"
@@ -62,24 +63,49 @@ X = np.hstack((intercept_ones, X))
 
 # Initialize theta
 initial_theta = np.zeros((n+1,1))
+# initial_theta = array([0,0,0])
 
 # let us calculate the cost and gradient
-cost, gradient = regression.costFunction(initial_theta, X, y)
-
+# cost, gradient = regression.costFunction(initial_theta, X, y)
+cost = regression.onlyCost(initial_theta, X, y)
+gradient = regression.onlyGradient(initial_theta, X, y)
 print('Cost at initial theta (zeros): \n', cost);
 print('Expected cost (approx): 0.693\n');
 print('Gradient at initial theta (zeros):');
 print(gradient);
 print('Expected gradients (approx):\n -0.1000\n -12.0092\n -11.2628\n');
 
-test_theta = [[-24], [0.2], [0.2]];
+test_theta = [[-24], [0.2], [0.2]]
 test_theta = np.matrix(test_theta)
-cost, grad = regression.costFunction(test_theta, X, y);
+cost = regression.onlyCost(test_theta, X, y);
+grad = regression.onlyGradient(test_theta, X, y);
 
 print('\nCost at test theta: \n', cost);
 print('Expected cost (approx): 0.218\n');
 print('Gradient at test theta:');
-print('\n', grad);
+print(grad);
 print('Expected gradients (approx):\n 0.043\n 2.566\n 2.647\n');
 
+screen.clear()
+input("Program paused. Press <enter> to continue.")
 
+
+#####################################################################
+# OPTIMIZING USING fmin_bfgs
+#####################################################################
+
+my_args = (X,y)
+print(X.shape)
+print(y.shape)
+print(test_theta.shape)
+
+
+
+def f(theta):
+	return np.ndarray.flatten(regression.onlyCost(initial_theta, X, y))
+def fprime(theta):
+	return np.ndarray.flatten(regression.onlyGradient(initial_theta, X, y))
+
+
+theta = scipy.optimize.fmin_bfgs(f,test_theta, fprime)
+print(theta)
